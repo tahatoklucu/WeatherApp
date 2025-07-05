@@ -1,6 +1,5 @@
 import React from 'react'
-import {Route, Routes} from 'react-router-dom';
-import '../styles/Main.css';
+import '../styles/Home.css';
 
 function Main() {
   return (
