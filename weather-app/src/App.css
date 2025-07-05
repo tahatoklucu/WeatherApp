@@ -3,3 +3,10 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+    background-image: url(./assets/weatherBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}

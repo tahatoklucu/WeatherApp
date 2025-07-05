@@ -1,0 +1,21 @@
+.container {
+    padding: 20px;
+}
+
+.top-section {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.top-title {
+    border: 1px solid #dee0ea;
+    border-radius: 10px;
+    padding: 10px;
+    width: 90%;
+    font-size: 26px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #dee0ea;
+}
