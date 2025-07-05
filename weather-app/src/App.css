@@ -1,0 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-image: url('/src/assets/weatherBackground.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
