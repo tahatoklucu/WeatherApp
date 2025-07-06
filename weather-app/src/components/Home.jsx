@@ -1,12 +1,11 @@
 import React from 'react'
-import '../styles/Home.css';
 
 function Main() {
   return (
     <>
-    <div className='container text-center flex justify-center'>
-        <div className='top-section rounded-sm border-1 inset-shadow-sm w-100'>
-            <h4 className='top-title'>Weather App</h4>
+    <div className='container p-5 w-full justify-center mx-auto'>
+        <div className='top-section text-center justify-center rounded-md border-1 border-[#dee0ea] inset-shadow-sm w-full p-8'>
+            <h4 className='top-title text-[#dee0ea]'>Weather App</h4>
         </div>
     </div>
     </>
