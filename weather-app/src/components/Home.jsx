@@ -4,6 +4,8 @@ import axios from 'axios';
 import Rainy from '../assets/Rainy.png';
 import Sunny from '../assets/Sunny.png';
 import Cloudy from '../assets/Cloudy.png';
+import Mist from '../assets/mist.png';
+import PartlyClody from '../assets/PartlyCloudy.png';
 
 function Main() {
     const [weather, setWeather] = useState([]);
@@ -13,21 +15,27 @@ function Main() {
     const [weatherImage, setWeatherImage] = useState('');
 
     const getWeatherImage = (condition) => {
-      switch(condition?.toLowerCase()) {
-          case 'sunny':
-          case 'clear':
-              return Sunny;
-          case 'rain':
-          case 'rainy':
-          case 'drizzle':
-              return Rainy;
-          case 'cloudy':
-          case 'overcast':
-          case 'Partly cloudy':
-              return Cloudy;
-          default:
-              return Default;
-      }
+      if (!condition) return Default;
+        
+        const normalizedCondition = condition.toLowerCase();
+        switch(normalizedCondition) {
+            case 'sunny':
+            case 'clear':
+                return Sunny;
+            case 'rain':
+            case 'drizzle':
+                return Rainy;
+            case 'cloudy':
+            case 'overcast':
+                return Cloudy;
+            case 'partly cloudy':
+                return PartlyClody;
+            case 'mist':
+            case 'fog':
+                return Mist;
+            default:
+                return Default;
+        }
     };
 
     useEffect(() => {
