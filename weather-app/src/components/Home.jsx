@@ -30,11 +30,14 @@ function Main() {
             case 'light rain shower':
             case 'light drizzle':
             case 'light rain':
+            case 'moderate rain':
+            case 'heavy rain':
                 return Rainy;
             case 'cloudy':
             case 'overcast':
                 return Cloudy;
             case 'partly cloudy':
+            case 'partly':
                 return PartlyCloudy;
             case 'mist':
             case 'fog':
@@ -42,6 +45,8 @@ function Main() {
             case 'thunder':
             case 'thundery outbreaks in nearby':
                 return Thunder;
+            default:
+                return PartlyCloudy;
         }
     };
 
@@ -95,7 +100,10 @@ function Main() {
                             <p className='font-semibold text-white'>
                               {new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}
                             </p>
-                            <img src={getWeatherImage(day.day.condition.text)}></img>
+                            <img src={getWeatherImage(day.day.condition.text)} />
+                            <p className='text-sm mt-1 text-white capitalize'>
+                              {day.day.condition.text.toLowerCase()}
+                            </p>
                             <p className='text-sm mt-1 text-white'>
                               {day.day.mintemp_c}°C / {day.day.maxtemp_c}°C 
                             </p>
