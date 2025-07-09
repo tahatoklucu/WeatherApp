@@ -11,15 +11,12 @@ import debounce from 'lodash.debounce';
 
 function Main() {
     const [weather, setWeather] = useState([]);
-    const [forecast, setForecast] = useState(null);
+    const [forecast, setForecast] = useState([]);
     const [location, setLocation] = useState('London');
     const [error, setError] = useState(null);
-    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     const [weatherImage, setWeatherImage] = useState('');
 
     const getWeatherImage = (condition) => {
-      if (!condition) return Default;
-        
         const normalizedCondition = condition.toLowerCase();
         switch(normalizedCondition) {
             case 'sunny':
@@ -41,8 +38,6 @@ function Main() {
             case 'thunder':
             case 'thundery outbreaks in nearby':
                 return Thunder;
-            default:
-                return Default;
         }
     };
 
@@ -65,6 +60,7 @@ function Main() {
 
           const futureResponse = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&days=3&aqi=no`);
           setForecast(futureResponse.data.forecast.forecastday);
+
         } catch (error) {
           console.error("API ERROR", error);
           setWeatherImage(Default);
