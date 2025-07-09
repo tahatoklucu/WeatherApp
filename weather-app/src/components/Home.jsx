@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import SettingsIcon from '@mui/icons-material/Settings';
 import axios from 'axios';
 import Rainy from '../assets/Rainy.png';
+import Sunny from '../assets/Sunny.png';
+import Cloudy from '../assets/Cloudy.png';
 
 function Main() {
     const [weather, setWeather] = useState([]);
@@ -10,14 +12,35 @@ function Main() {
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     const [weatherImage, setWeatherImage] = useState('');
 
+    const getWeatherImage = (condition) => {
+      switch(condition?.toLowerCase()) {
+          case 'sunny':
+          case 'clear':
+              return Sunny;
+          case 'rain':
+          case 'rainy':
+          case 'drizzle':
+              return Rainy;
+          case 'cloudy':
+          case 'overcast':
+          case 'Partly cloudy':
+              return Cloudy;
+          default:
+              return Default;
+      }
+    };
+
     useEffect(() => {
       const fetchWeather = async () => {
         try {
           const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&aqi=no`);
           console.log(response.data);
           setWeather(response.data);
+          const condition = response.data.current?.condition?.text;
+          setWeatherImage(getWeatherImage(condition));
         } catch (error) {
           console.error("API ERROR", error);
+          setWeatherImage(Default);
         }
       };
       fetchWeather();
@@ -34,7 +57,7 @@ function Main() {
             {weather && weather.location ? (
               <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
                   <div className='flex relative'>
-                    <img src={Rainy} className='w-100 h-100 text-center' />
+                    <img src={weatherImage} className='w-100 h-100 text-center' />
                     <h2 className='text-white text-shadow-lg text-7xl ml-30 mt-30'>{weather.location.name}, {weather.location.country}</h2>
                   </div>
                   <div className='p-2 text-2xl'>
