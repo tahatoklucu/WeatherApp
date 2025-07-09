@@ -96,15 +96,15 @@ function Main() {
                       <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
                       <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mt-10'>
                         {forecast && forecast.map((day, index) => (
-                          <div key={index} className='border-1 border-[#dee0ea] p-3 rounded-lg shadow text-center'>
-                            <p className='font-semibold text-white'>
+                          <div key={index} className='border-1 border-[#dee0ea] p-3 rounded-lg shadow text-center drop-shadow-lg'>
+                            <p className='font-semibold text-white drop-shadow-lg'>
                               {new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}
                             </p>
                             <img src={getWeatherImage(day.day.condition.text)} />
-                            <p className='text-sm mt-1 text-white capitalize'>
+                            <p className='text-sm mt-1 text-white capitalize drop-shadow-lg'>
                               {day.day.condition.text.toLowerCase()}
                             </p>
-                            <p className='text-sm mt-1 text-white'>
+                            <p className='text-sm mt-1 text-white drop-shadow-lg'>
                               {day.day.mintemp_c}°C / {day.day.maxtemp_c}°C 
                             </p>
                           </div>
