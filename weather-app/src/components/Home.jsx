@@ -5,11 +5,12 @@ import Rainy from '../assets/Rainy.png';
 import Sunny from '../assets/Sunny.png';
 import Cloudy from '../assets/Cloudy.png';
 import Mist from '../assets/mist.png';
-import PartlyClody from '../assets/PartlyCloudy.png';
+import PartlyCloudy from '../assets/PartlyCloudy.png';
 import Thunder from '../assets/Thunderstorm.png';
 
 function Main() {
     const [weather, setWeather] = useState([]);
+    const [forecast, setForecast] = useState(null);
     const [location, setLocation] = useState('London');
     const [error, setError] = useState(null);
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
@@ -32,7 +33,7 @@ function Main() {
             case 'overcast':
                 return Cloudy;
             case 'partly cloudy':
-                return PartlyClody;
+                return PartlyCloudy;
             case 'mist':
             case 'fog':
                 return Mist;
@@ -48,10 +49,13 @@ function Main() {
       const fetchWeather = async () => {
         try {
           const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&aqi=no`);
-          console.log(response.data);
           setWeather(response.data);
+
           const condition = response.data.current?.condition?.text;
           setWeatherImage(getWeatherImage(condition));
+
+          const futureResponse = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&days=3&aqi=no`);
+          setForecast(futureResponse.data.forecast.forecastday);
         } catch (error) {
           console.error("API ERROR", error);
           setWeatherImage(Default);
@@ -59,6 +63,7 @@ function Main() {
       };
       fetchWeather();
     },[location, apiKey])
+
   return (
     <>
     <div className='container p-5 w-full justify-center mx-auto'>
@@ -73,7 +78,21 @@ function Main() {
                   <div className='flex relative'>
                     <img src={weatherImage} className='w-80 h-80 text-center' />
                     <div className='border-l-1 border-[#dee0ea] ml-10 drop-shadow-xs'>
-                      <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>5 day weather forecast:</h4>
+                      <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
+                      <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mt-10'>
+                        {forecast && forecast.map((day, index) => (
+                          <div key={index} className='border-1 border-[#dee0ea] p-3 rounded-lg shadow text-center'>
+                            <p className='font-semibold text-white'>
+                              {new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}
+                            </p>
+                            <img src={getWeatherImage(day.day.condition.text)}></img>
+                            <p className='text-sm mt-1 text-white'>
+                              {day.day.mintemp_c}°C / {day.day.maxtemp_c}°C 
+                            </p>
+                          </div>
+                        ))}
+                        
+                      </div>
                     </div>
                   </div>
                   <div className='p-2 text-2xl'>
