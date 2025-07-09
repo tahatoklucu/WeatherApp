@@ -15,6 +15,7 @@ function Main() {
     const [location, setLocation] = useState('London');
     const [error, setError] = useState(null);
     const [weatherImage, setWeatherImage] = useState('');
+    const [airQuality, setAirQuality] = useState(null);
 
     const getWeatherImage = (condition) => {
         const normalizedCondition = condition.toLowerCase();
@@ -62,8 +63,9 @@ function Main() {
         if (!location || location.length < 2) return;
 
         try {
-          const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&aqi=no`);
+          const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&aqi=yes`);
           setWeather(response.data);
+          setAirQuality(response.data.current.air_quality);
 
           const condition = response.data.current?.condition?.text;
           setWeatherImage(getWeatherImage(condition));
@@ -81,51 +83,70 @@ function Main() {
     },[location])
 
   return (
-    <>
-    <div className='container p-5 w-full justify-center mx-auto'>
-        <div className='text-center justify-center flex rounded-lg border-1 border-[#749BC2] inset-shadow-sm w-full p-5 shadow-md'>
-            <label className='text-left justify-left m-2 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
-            <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-[#dee0ea] p-2 rounded-md shadow-lg' />
-            <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
-        </div>
-        <div>
-            {weather && weather.location ? (
-              <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
-                  <div className='flex relative'>
-                    <img src={weatherImage} className='w-80 h-80 text-center' />
-                    <div className='border-l-1 border-[#dee0ea] ml-10 drop-shadow-xs'>
-                      <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
-                      <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mt-10'>
-                        {forecast && forecast.map((day, index) => (
-                          <div key={index} className='border-1 border-[#dee0ea] p-3 rounded-lg shadow text-center drop-shadow-lg'>
-                            <p className='font-semibold text-white drop-shadow-lg'>
-                              {new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}
-                            </p>
-                            <img src={getWeatherImage(day.day.condition.text)} />
-                            <p className='text-sm mt-1 text-white capitalize drop-shadow-lg'>
-                              {day.day.condition.text.toLowerCase()}
-                            </p>
-                            <p className='text-sm mt-1 text-white drop-shadow-lg'>
-                              {day.day.mintemp_c}°C / {day.day.maxtemp_c}°C 
-                            </p>
-                          </div>
-                        ))}
-                        
-                      </div>
+    <div className='min-h-screen bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans]'>
+      <div className='container p-5 w-402 justify-center mx-auto'>
+          <div className='text-center justify-center flex rounded-lg border-1 border-[#749BC2] inset-shadow-sm w-full p-5 shadow-md'>
+              <label className='text-left justify-left m-2 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
+              <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-[#dee0ea] p-2 rounded-md shadow-lg' />
+              <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
+          </div>
+          <div>
+              {weather && weather.location ? (
+                <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
+                    <div className='flex relative'>
+                      <img src={weatherImage} className='w-80 h-80 text-center' />
+                      <div className='border-l-1 border-[#749BC2] ml-10 drop-shadow-xs'>
+                        <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
+                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mt-10 gap-20'>
+                          {forecast && forecast.map((day, index) => (
+                            <div key={index} className='border-1 border-[#749BC2] p-3 rounded-lg shadow text-center drop-shadow-lg w-50'>
+                              <p className='font-semibold text-white drop-shadow-lg'>
+                                {new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}
+                              </p>
+                              <img src={getWeatherImage(day.day.condition.text)} />
+                              <p className='text-sm mt-1 text-white capitalize drop-shadow-lg'>
+                                {day.day.condition.text.toLowerCase()}
+                              </p>
+                              <p className='text-sm mt-1 text-white drop-shadow-lg'>
+                                {day.day.mintemp_c}°C / {day.day.maxtemp_c}°C 
+                              </p>
+                            </div>
+                          ))}   
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                  <div className='p-2 text-2xl'>
-                    <h2 className='text-white text-shadow-lg text-6xl mb-5 mt-5 drop-shadow-lg'>{weather.location.name}, {weather.location.country}</h2>
-                    <p className='text-white text-shadow-lg text-3xl drop-shadow-lg'>Temperature: {weather.current.temp_c}°C</p>
-                    <p className='text-white text-shadow-lg text-3xl mt-4 drop-shadow-lg'>Condition: {weather.current.condition.text}</p>
-                  </div>
-              </div>
-            ):
-              <p>Data loading or not found.</p>
-            }
-        </div>
+                    <div className='p-2 text-2xl'>
+                      <h2 className='text-white text-shadow-lg text-6xl mb-5 mt-5 drop-shadow-lg'>{weather.location.name}, {weather.location.country}</h2>
+                      <p className='text-white text-shadow-lg text-2xl drop-shadow-lg'>Temperature: {weather.current.temp_c}°C</p>
+                      <p className='text-white text-shadow-lg text-2xl mt-4 drop-shadow-lg'>Condition: {weather.current.condition.text}</p>
+                      {airQuality && (
+                          <div className="mt-6 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+                            <h4 className="text-white text-xl mb-2">Air Quality</h4>
+                            <div className="grid grid-cols-2 gap-4 text-white">
+                              <div>
+                                <p>PM2.5: <span className="font-bold">{airQuality.pm2_5.toFixed(1)} µg/m³</span></p>
+                                <p>CO: <span className="font-bold">{airQuality.co.toFixed(1)} ppm</span></p>
+                              </div>
+                              <div>
+                                <p>O₃: <span className="font-bold">{airQuality.o3.toFixed(1)} µg/m³</span></p>
+                                <p>NO₂: <span className="font-bold">{airQuality.no2.toFixed(1)} µg/m³</span></p>
+                              </div>
+                          </div>
+                            <p className="text-white mt-2 text-xl">
+                              {airQuality["us-epa-index"] === 1 ? "Good 🌱" : 
+                              airQuality["us-epa-index"] === 2 ? "Moderate 🌼" : 
+                              "Unhealthy 🏭"}
+                            </p>
+                        </div>
+                      )}
+                    </div>
+                </div>
+              ):
+                <p className='text-white p-30 m-30 text-3xl'>Data loading or not found.</p>
+              }
+          </div>
+      </div>
     </div>
-    </>
   )
 }
 
