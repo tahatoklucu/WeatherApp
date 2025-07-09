@@ -6,6 +6,7 @@ import Sunny from '../assets/Sunny.png';
 import Cloudy from '../assets/Cloudy.png';
 import Mist from '../assets/mist.png';
 import PartlyClody from '../assets/PartlyCloudy.png';
+import Thunder from '../assets/Thunderstorm.png';
 
 function Main() {
     const [weather, setWeather] = useState([]);
@@ -24,6 +25,8 @@ function Main() {
                 return Sunny;
             case 'rain':
             case 'drizzle':
+            case 'rainy':
+            case 'patchy rain nearby':
                 return Rainy;
             case 'cloudy':
             case 'overcast':
@@ -33,6 +36,9 @@ function Main() {
             case 'mist':
             case 'fog':
                 return Mist;
+            case 'thunder':
+            case 'thundery outbreaks in nearby':
+                return Thunder;
             default:
                 return Default;
         }
@@ -61,14 +67,17 @@ function Main() {
             <input type='text' onChange={(e) => setLocation(e.target.value)} placeholder='Select country or city' className='w-310 mx-auto bg-[#dee0ea] p-2 rounded-md shadow-lg' />
             <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
         </div>
-        <div className='left-side'>
+        <div>
             {weather && weather.location ? (
               <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
                   <div className='flex relative'>
-                    <img src={weatherImage} className='w-100 h-100 text-center' />
-                    <h2 className='text-white text-shadow-lg text-7xl ml-30 mt-30'>{weather.location.name}, {weather.location.country}</h2>
+                    <img src={weatherImage} className='w-80 h-80 text-center' />
+                    <div className='border-l-1 border-[#dee0ea] ml-10'>
+                      <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase'>5 day weather forecast:</h4>
+                    </div>
                   </div>
                   <div className='p-2 text-2xl'>
+                    <h2 className='text-white text-shadow-lg text-6xl mb-5 mt-5 '>{weather.location.name}, {weather.location.country}</h2>
                     <p className='text-white text-shadow-lg text-3xl'>Temperature: {weather.current.temp_c}°C</p>
                     <p className='text-white text-shadow-lg text-3xl mt-4'>Condition: {weather.current.condition.text}</p>
                   </div>
