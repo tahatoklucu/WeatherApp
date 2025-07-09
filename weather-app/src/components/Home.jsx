@@ -86,9 +86,9 @@ function Main() {
     <div className='min-h-screen bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans]'>
       <div className='container p-5 w-402 justify-center mx-auto'>
           <div className='text-center justify-center flex rounded-lg border-1 border-gray-600/90 inset-shadow-sm w-full p-5 shadow-md'>
-              <label className='text-left justify-left m-2 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
+              <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
               <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-transparent p-0 rounded-md shadow-lgw-full py-3 pl-12 pr-4 text-white bg-gray-800/30 backdrop-blur-md border border-gray-600/50 rounded-xl shadow-lg focus:outline-none focus:ring-1 focus:ring-blue-400/50 focus:border-blue-400/30 transition-all duration-200 placeholder-gray-300' />
-              <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
+              <SettingsIcon className='text-white m-3 cursor-pointer mr-5 md:h-5px' />
           </div>
           <div>
               {weather && weather.location ? (
