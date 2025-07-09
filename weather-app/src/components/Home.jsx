@@ -26,14 +26,14 @@ function Main() {
     <>
     <div className='container p-5 w-full justify-center mx-auto'>
         <div className='text-center justify-center flex rounded-lg border-1 border-[#749BC2] inset-shadow-sm w-full p-5 shadow-md'>
-            <label className='text-left justify-left p-2 text-[#dee0ea] text-xl h-auto md:h-5vh'>Weather App</label>
+            <label className='text-left justify-left m-2 text-[#dee0ea] text-xl h-auto md:h-5vh'>Weather App</label>
             <input type='text' onChange={(e) => setLocation(e.target.value)} placeholder='Select country or city' className='w-310 mx-auto bg-[#dee0ea] p-2 rounded-md shadow-lg' />
             <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
         </div>
         <div className='left-side'>
             {weather && weather.location ? (
               <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
-                  <div className='flex'>
+                  <div className='flex relative'>
                     <img src={Rainy} className='w-100 h-100 text-center' />
                     <h2 className='text-white text-shadow-lg text-7xl ml-30 mt-30'>{weather.location.name}, {weather.location.country}</h2>
                   </div>
