@@ -44,6 +44,7 @@ function Main() {
                 return Mist;
             case 'thunder':
             case 'thundery outbreaks in nearby':
+            case 'moderate or heavy rain with thunder':
                 return Thunder;
             default:
                 return PartlyCloudy;
