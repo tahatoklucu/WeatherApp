@@ -33,15 +33,17 @@ function Main() {
         <div className='left-side'>
             {weather && weather.location ? (
               <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
-                  <img src={Rainy} className='w-75 h-75 text-center'></img>
+                  <div className='flex'>
+                    <img src={Rainy} className='w-100 h-100 text-center' />
+                    <h2 className='text-white text-shadow-lg text-7xl ml-30 mt-30'>{weather.location.name}, {weather.location.country}</h2>
+                  </div>
                   <div className='p-2 text-2xl'>
-                    <h2 className='text-white'>{weather.location.name}, {weather.location.country}</h2>
-                    <p className='text-white'>Temperature: {weather.current.temp_c}°C</p>
-                    <p className='text-white'>Condition: {weather.current.condition.text}</p>
+                    <p className='text-white text-shadow-lg text-3xl'>Temperature: {weather.current.temp_c}°C</p>
+                    <p className='text-white text-shadow-lg text-3xl mt-4'>Condition: {weather.current.condition.text}</p>
                   </div>
               </div>
             ):
-              <p>Veri yükleniyor veya bulunamadı.</p>
+              <p>Data loading or not found.</p>
             }
         </div>
     </div>
