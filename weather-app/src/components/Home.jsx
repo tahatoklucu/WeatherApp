@@ -115,7 +115,7 @@ function Main() {
                         </div>
                         </div>
                     </div>
-                    <div className='p-2 text-2xl'>
+                    <div className='p-2 text-xl'>
                       <h2 className='text-white text-shadow-lg text-6xl mb-5 mt-5 drop-shadow-lg'>{weather.location.name}, {weather.location.country}</h2>
                       <p className='text-white text-shadow-lg text-2xl drop-shadow-lg'>Temperature: {weather.current.temp_c}°C</p>
                       <p className='text-white text-shadow-lg text-2xl mt-4 drop-shadow-lg'>Condition: {weather.current.condition.text}</p>
@@ -142,7 +142,9 @@ function Main() {
                     </div>
                 </div>
               ):
-                <p className='text-white p-30 m-30 text-3xl'>Data loading or not found.</p>
+              <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
+                <p className='text-white text-center text-2xl p-20'>Data loading or not found.</p>
+              </div>
               }
           </div>
       </div>
