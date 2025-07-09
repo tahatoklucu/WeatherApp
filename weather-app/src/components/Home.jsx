@@ -8,6 +8,7 @@ function Main() {
     const [location, setLocation] = useState('London');
     const [error, setError] = useState(null);
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+    const [weatherImage, setWeatherImage] = useState('');
 
     useEffect(() => {
       const fetchWeather = async () => {
@@ -31,8 +32,8 @@ function Main() {
         </div>
         <div className='left-side'>
             {weather && weather.location ? (
-              <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md text-center justify-center'>
-                  <img src={Rainy} className='w-70 h-70 text-center'></img>
+              <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
+                  <img src={Rainy} className='w-75 h-75 text-center'></img>
                   <div className='p-2 text-2xl'>
                     <h2 className='text-white'>{weather.location.name}, {weather.location.country}</h2>
                     <p className='text-white'>Temperature: {weather.current.temp_c}°C</p>
