@@ -85,21 +85,21 @@ function Main() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans]'>
       <div className='container p-5 w-402 justify-center mx-auto'>
-          <div className='text-center justify-center flex rounded-lg border-1 border-[#749BC2] inset-shadow-sm w-full p-5 shadow-md'>
+          <div className='text-center justify-center flex rounded-lg border-1 border-gray-600/90 inset-shadow-sm w-full p-5 shadow-md'>
               <label className='text-left justify-left m-2 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
               <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-transparent p-0 rounded-md shadow-lgw-full py-3 pl-12 pr-4 text-white bg-gray-800/30 backdrop-blur-md border border-gray-600/50 rounded-xl shadow-lg focus:outline-none focus:ring-1 focus:ring-blue-400/50 focus:border-blue-400/30 transition-all duration-200 placeholder-gray-300' />
               <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
           </div>
           <div>
               {weather && weather.location ? (
-                <div className='p-10 border-1 mt-10 border-[#749BC2] rounded-lg inset-shadow-sm shadow-md'>
+                <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
                     <div className='flex relative'>
                       <img src={weatherImage} className='w-80 h-80 text-center' />
-                      <div className='border-l-1 border-[#749BC2] ml-10 drop-shadow-xs'>
+                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs'>
                         <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
                         <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mt-10 gap-20'>
                           {forecast && forecast.map((day, index) => (
-                            <div key={index} className='border-1 border-[#749BC2] p-3 rounded-lg shadow text-center drop-shadow-lg w-50'>
+                            <div key={index} className='border-1 border-gray-400/30 p-3 rounded-lg shadow drop-shadow-xl text-center drop-shadow-lg w-50'>
                               <p className='font-semibold text-white drop-shadow-lg'>
                                 {new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'})}
                               </p>
@@ -121,18 +121,18 @@ function Main() {
                       <p className='text-white text-shadow-lg text-2xl mt-4 drop-shadow-lg'>Condition: {weather.current.condition.text}</p>
                       {airQuality && (
                           <div className="mt-6 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                            <h4 className="text-white text-xl mb-2">Air Quality</h4>
+                            <h4 className="text-white text-md mb-2">Air Quality</h4>
                             <div className="grid grid-cols-2 gap-4 text-white">
                               <div>
-                                <p>PM2.5: <span className="font-bold">{airQuality.pm2_5.toFixed(1)} µg/m³</span></p>
-                                <p>CO: <span className="font-bold">{airQuality.co.toFixed(1)} ppm</span></p>
+                                <p>PM2.5: <span>{airQuality.pm2_5.toFixed(1)} µg/m³</span></p>
+                                <p>CO: <span>{airQuality.co.toFixed(1)} ppm</span></p>
                               </div>
                               <div>
-                                <p>O₃: <span className="font-bold">{airQuality.o3.toFixed(1)} µg/m³</span></p>
-                                <p>NO₂: <span className="font-bold">{airQuality.no2.toFixed(1)} µg/m³</span></p>
+                                <p>O₃: <span>{airQuality.o3.toFixed(1)} µg/m³</span></p>
+                                <p>NO₂: <span>{airQuality.no2.toFixed(1)} µg/m³</span></p>
                               </div>
                           </div>
-                            <p className="text-white mt-2 text-xl">
+                            <p className="text-white mt-2 text-sm">
                               {airQuality["us-epa-index"] === 1 ? "Good 🌱" : 
                               airQuality["us-epa-index"] === 2 ? "Moderate 🌼" : 
                               "Unhealthy 🏭"}
