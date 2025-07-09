@@ -7,6 +7,7 @@ import Cloudy from '../assets/Cloudy.png';
 import Mist from '../assets/mist.png';
 import PartlyCloudy from '../assets/PartlyCloudy.png';
 import Thunder from '../assets/Thunderstorm.png';
+import debounce from 'lodash.debounce';
 
 function Main() {
     const [weather, setWeather] = useState([]);
@@ -45,8 +46,16 @@ function Main() {
         }
     };
 
+    const searchLocation = debounce((query) => {
+      if (query.length >= 2) {
+          setLocation(query);
+      }
+    }, 500);
+
     useEffect(() => {
       const fetchWeather = async () => {
+        if (!location || location.length < 2) return;
+
         try {
           const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&aqi=no`);
           setWeather(response.data);
@@ -62,14 +71,14 @@ function Main() {
         }
       };
       fetchWeather();
-    },[location, apiKey])
+    },[location])
 
   return (
     <>
     <div className='container p-5 w-full justify-center mx-auto'>
         <div className='text-center justify-center flex rounded-lg border-1 border-[#749BC2] inset-shadow-sm w-full p-5 shadow-md'>
             <label className='text-left justify-left m-2 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
-            <input type='text' onChange={(e) => setLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-[#dee0ea] p-2 rounded-md shadow-lg' />
+            <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-[#dee0ea] p-2 rounded-md shadow-lg' />
             <SettingsIcon className='text-white m-2 cursor-pointer mr-5 md:h-5px' />
         </div>
         <div>
