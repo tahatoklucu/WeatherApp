@@ -93,7 +93,7 @@ function Main() {
           <div>
               {weather && weather.location ? (
                 <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
-                    <div className='flex relative'>
+                    <div className='flex relative max-sm:grid'>
                       <img src={weatherImage} className='w-80 h-80 text-center' />
                       <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs'>
                         <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
