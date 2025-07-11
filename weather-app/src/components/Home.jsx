@@ -72,7 +72,6 @@ function Main() {
 
           const futureResponse = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=6b7f05213ac44dc49e3235528250807&q=${location}&days=3&aqi=no`);
           setForecast(futureResponse.data.forecast.forecastday);
-          console.log(futureResponse.data.forecast.forecastday);
 
         } catch (error) {
           console.error("API ERROR", error);
