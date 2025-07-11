@@ -86,18 +86,18 @@ function Main() {
     <div className='min-h-screen bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans]'>
       <div className='container p-5 w-402 justify-center mx-auto max-sm:w-auto'>
           <div className='text-center justify-center flex rounded-lg border-1 border-gray-600/90 inset-shadow-sm w-full p-5 shadow-md'>
-              <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
+              <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg max-sm:hidden'>Weather App</label>
               <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-transparent p-0 rounded-md shadow-lgw-full py-3 pl-12 pr-4 text-white bg-gray-800/30 backdrop-blur-md border border-gray-600/50 rounded-xl shadow-lg focus:outline-none focus:ring-1 focus:ring-blue-400/50 focus:border-blue-400/30 transition-all duration-200 placeholder-gray-300' />
-              <SettingsIcon className='text-white m-3 cursor-pointer mr-5 md:h-5px' />
+              <SettingsIcon className='text-white m-3 cursor-pointer mr-5 md:h-5px max-sm:ml-7' />
           </div>
           <div>
               {weather && weather.location ? (
                 <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
-                    <div className='flex relative max-sm:grid'>
-                      <img src={weatherImage} className='w-80 h-80 text-center max-sm:w-30 max-sm:h-30' />
-                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs max-sm:border-none'>
+                    <div className='flex relative max-sm:flex max-sm:justify-center'>
+                      <img src={weatherImage} className='w-80 h-80 text-center max-sm:w-40 max-sm:h-40' />
+                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs max-sm:border-none max-sm:hidden'>
                         <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow max-sm:ml-0'>3 day weather forecast:</h4>
-                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mt-10 gap-20 max-sm:ml-0'>
+                        <div className='ml-10 grid grid-cols-1 max-sm:grid-cols-3 max-md:grid-cols-5 mt-10 gap-20 max-sm:ml-0'>
                           {forecast && forecast.map((day, index) => (
                             <div key={index} className='border-1 border-gray-400/30 p-3 rounded-lg shadow drop-shadow-xl text-center drop-shadow-lg w-50'>
                               <p className='font-semibold text-white drop-shadow-lg'>
@@ -116,23 +116,23 @@ function Main() {
                         </div>
                     </div>
                     <div className='p-2 text-xl'>
-                      <h2 className='text-white text-shadow-lg text-6xl mb-5 mt-5 drop-shadow-lg'>{weather.location.name}, {weather.location.country}</h2>
-                      <p className='text-white text-shadow-lg text-2xl drop-shadow-lg'>Temperature: {weather.current.temp_c}°C</p>
-                      <p className='text-white text-shadow-lg text-2xl mt-4 drop-shadow-lg'>Condition: {weather.current.condition.text}</p>
+                      <h2 className='text-white text-shadow-lg text-6xl mb-5 mt-5 drop-shadow-lg max-sm:text-[30px]'>{weather.location.name}, {weather.location.country}</h2>
+                      <p className='text-white text-shadow-lg text-2xl drop-shadow-lg max-sm:text-[18px]'>Temperature: {weather.current.temp_c}°C</p>
+                      <p className='text-white text-shadow-lg text-2xl mt-4 drop-shadow-lg max-sm:text-[18px]'>Condition: {weather.current.condition.text}</p>
                       {airQuality && (
                           <div className="mt-6 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                            <h4 className="text-white text-md mb-2">Air Quality</h4>
+                            <h4 className="text-white text-md mb-2 max-sm:text-[18px]">Air Quality</h4>
                             <div className="grid grid-cols-2 gap-4 text-white">
                               <div>
-                                <p>PM2.5: <span>{airQuality.pm2_5.toFixed(1)} µg/m³</span></p>
-                                <p>CO: <span>{airQuality.co.toFixed(1)} ppm</span></p>
+                                <p className='max-sm:text-[18px]'>PM2.5: <span className='max-sm:text-[18px]'>{airQuality.pm2_5.toFixed(1)} µg/m³</span></p>
+                                <p className='max-sm:text-[18px]'>CO: <span className='max-sm:text-[18px]'>{airQuality.co.toFixed(1)} ppm</span></p>
                               </div>
                               <div>
-                                <p>O₃: <span>{airQuality.o3.toFixed(1)} µg/m³</span></p>
-                                <p>NO₂: <span>{airQuality.no2.toFixed(1)} µg/m³</span></p>
+                                <p className='max-sm:text-[18px]'>O₃: <span className='max-sm:text-[18px]'>{airQuality.o3.toFixed(1)} µg/m³</span></p>
+                                <p className='max-sm:text-[18px]'>NO₂: <span className='max-sm:text-[18px]'>{airQuality.no2.toFixed(1)} µg/m³</span></p>
                               </div>
                           </div>
-                            <p className="text-white mt-2 text-sm">
+                            <p className="text-white mt-2 text-sm max-sm:text-[18px]">
                               {airQuality["us-epa-index"] === 1 ? "Good 🌱" : 
                               airQuality["us-epa-index"] === 2 ? "Moderate 🌼" : 
                               "Unhealthy 🏭"}
