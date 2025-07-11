@@ -1,14 +1,5 @@
 @import "tailwindcss";
 
-body {
+.background {
     background-image: url(./assets/weatherBackground.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-}
-
-@media (max-width: 380px) {
-    body {
-        height: fit-content;
-    }
 }

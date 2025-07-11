@@ -83,7 +83,7 @@ function Main() {
     },[location])
 
   return (
-    <div className='bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans] max-sm:h-100vh'>
+    <div className='min-h-screen bg-cover bg-no-repeat bg-center bg-fixed bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans] max-sm:h-100vh background'>
       <div className='container p-5 w-402 justify-center mx-auto max-sm:w-auto'>
           <div className='text-center justify-center flex rounded-lg border-1 border-gray-600/90 inset-shadow-sm w-full p-5 shadow-md'>
               <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg max-sm:hidden'>Weather App</label>
