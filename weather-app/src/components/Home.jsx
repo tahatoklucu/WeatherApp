@@ -84,7 +84,7 @@ function Main() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-900/40 to-gray-800/40 font-[Open_Sans]'>
-      <div className='container p-5 w-402 justify-center mx-auto'>
+      <div className='container p-5 w-402 justify-center mx-auto max-sm:w-auto'>
           <div className='text-center justify-center flex rounded-lg border-1 border-gray-600/90 inset-shadow-sm w-full p-5 shadow-md'>
               <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg'>Weather App</label>
               <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-transparent p-0 rounded-md shadow-lgw-full py-3 pl-12 pr-4 text-white bg-gray-800/30 backdrop-blur-md border border-gray-600/50 rounded-xl shadow-lg focus:outline-none focus:ring-1 focus:ring-blue-400/50 focus:border-blue-400/30 transition-all duration-200 placeholder-gray-300' />
@@ -94,10 +94,10 @@ function Main() {
               {weather && weather.location ? (
                 <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
                     <div className='flex relative max-sm:grid'>
-                      <img src={weatherImage} className='w-80 h-80 text-center' />
-                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs'>
-                        <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow'>3 day weather forecast:</h4>
-                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mt-10 gap-20'>
+                      <img src={weatherImage} className='w-80 h-80 text-center max-sm:w-30 max-sm:h-30' />
+                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs max-sm:border-none'>
+                        <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow max-sm:ml-0'>3 day weather forecast:</h4>
+                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mt-10 gap-20 max-sm:ml-0'>
                           {forecast && forecast.map((day, index) => (
                             <div key={index} className='border-1 border-gray-400/30 p-3 rounded-lg shadow drop-shadow-xl text-center drop-shadow-lg w-50'>
                               <p className='font-semibold text-white drop-shadow-lg'>
