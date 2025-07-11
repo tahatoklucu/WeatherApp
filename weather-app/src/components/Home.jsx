@@ -97,7 +97,7 @@ function Main() {
                       <img src={weatherImage} className='w-80 h-80 text-center max-sm:w-40 max-sm:h-40' />
                       <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs max-sm:border-none max-sm:hidden'>
                         <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow max-sm:ml-0'>3 day weather forecast:</h4>
-                        <div className='ml-10 grid grid-cols-1 max-sm:grid-cols-3 max-md:grid-cols-5 mt-10 gap-20 max-sm:ml-0'>
+                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-3 max-sm:grid-cols-3 max-md:grid-cols-5 mt-10 gap-20 max-sm:ml-0'>
                           {forecast && forecast.map((day, index) => (
                             <div key={index} className='border-1 border-gray-400/30 p-3 rounded-lg shadow drop-shadow-xl text-center drop-shadow-lg w-50'>
                               <p className='font-semibold text-white drop-shadow-lg'>
