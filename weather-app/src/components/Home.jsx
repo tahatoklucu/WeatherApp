@@ -86,18 +86,18 @@ function Main() {
     <div className='min-h-screen bg-cover bg-no-repeat bg-center bg-fixed font-[Open_Sans] max-sm:h-100vh background'>
       <div className='container p-5 w-402 justify-center mx-auto max-sm:w-auto'>
           <div className='text-center justify-center flex rounded-lg border-1 border-gray-600/90 inset-shadow-sm w-full p-5 shadow-md'>
-              <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg max-sm:hidden'>Weather App</label>
+              <label className='text-left justify-left m-3 text-[#dee0ea] text-xl h-auto md:h-5vh drop-shadow-lg max-sm:hidden max-md:hidden max-lg:hidden max-xl:hidden'>Weather App</label>
               <input type='text' onChange={(e) => searchLocation(e.target.value)} placeholder='Enter a city' className='w-310 mx-auto bg-transparent p-0 rounded-md shadow-lgw-full py-3 pl-12 pr-4 text-white bg-gray-800/30 backdrop-blur-md border border-gray-600/50 rounded-xl shadow-lg focus:outline-none focus:ring-1 focus:ring-blue-400/50 focus:border-blue-400/30 transition-all duration-200 placeholder-gray-300' />
-              <SettingsIcon className='text-white m-3 cursor-pointer mr-5 md:h-5px max-sm:ml-7' />
+              <SettingsIcon className='text-white m-3 cursor-pointer mr-5 md:h-5px max-sm:ml-7 max-md:ml-7' />
           </div>
           <div>
               {weather && weather.location ? (
                 <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
-                    <div className='flex relative max-sm:flex max-sm:justify-center'>
-                      <img src={weatherImage} className='w-80 h-80 text-center max-sm:w-40 max-sm:h-40' />
-                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs max-sm:border-none max-sm:hidden'>
+                    <div className='flex relative max-sm:flex max-sm:justify-center max-md:justify-cneter max-md:flex'>
+                      <img src={weatherImage} className='w-80 h-80 text-center max-sm:w-40 max-sm:h-40 max-md:w-50 max-md:h-50 max-xl:w-60 max-xl:h-60' />
+                      <div className='border-l-1 border-gray-600/90 ml-10 drop-shadow-xs max-sm:border-none max-sm:hidden max-md:hidden max-lg:hidden '>
                         <h4 className='text-white text-shadow-lg text-2xl ml-10 uppercase drop-shadow max-sm:ml-0'>3 day weather forecast:</h4>
-                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-3 max-sm:grid-cols-3 max-md:grid-cols-5 mt-10 gap-20 max-sm:ml-0'>
+                        <div className='ml-10 grid grid-cols-1 sm:grid-cols-3 max-sm:grid-cols-3 max-md:grid-cols-5 mt-10 gap-20 max-sm:ml-0 max-md:ml-0'>
                           {forecast && forecast.map((day, index) => (
                             <div key={index} className='border-1 border-gray-400/30 p-3 rounded-lg shadow drop-shadow-xl text-center drop-shadow-lg w-50'>
                               <p className='font-semibold text-white drop-shadow-lg'>
@@ -140,12 +140,16 @@ function Main() {
                         </div>
                       )}
                     </div>
+                    
                 </div>
               ):
               <div className='p-10 border-1 mt-10 border-gray-600/90 shadow-lg bg-gray-800/10 rounded-lg inset-shadow-sm shadow-md'>
                 <p className='text-white text-center text-2xl p-20'>Data loading or not found.</p>
               </div>
               }
+              <div className='footer text-white text-center mt-10 mb-3'>
+                    © Taha Toklucu. All rights reserved.
+              </div>
           </div>
       </div>
     </div>
