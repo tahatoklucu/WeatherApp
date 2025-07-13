@@ -1,6 +1,6 @@
 # 🌤️ Weather App
 
-A modern and responsive weather application built with **React.js** and styled using **Tailwind CSS**. The app fetches real-time weather data, 3-day forecasts, and air quality index information via a REST API using **Axios**.
+A modern and responsive weather application built with **React.js** and styled using **Tailwindcss**. The app fetches real-time weather data, 3-day forecasts, and air quality index information via a REST API using **Axios**.
 
 ---
 
@@ -13,7 +13,7 @@ A modern and responsive weather application built with **React.js** and styled u
 ## 🛠️ Tech Stack
 
 - **React.js** – For building dynamic and component-based UI  
-- **Tailwind CSS** – For responsive and utility-first styling  
+- **Tailwindcss** – For responsive and utility-first styling  
 - **JavaScript (ES6+)** – Core scripting  
 - **Axios** – For handling REST API requests  
 - **Vercel** – Cloud platform for deployment and CI/CD
